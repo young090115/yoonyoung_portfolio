@@ -1,0 +1,103 @@
+body{
+  user-select: none;
+}
+
+
+/* ================= CTA ================= */
+.cta {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.cta a {
+  text-decoration: none;
+  color: #38bdf8;
+  padding: 14px 40px;
+  border: 1px solid #38bdf8;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta a:hover {
+  background: #38bdf8;
+  color: #020617;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+
+
+
+/* 푸터 기본 초기화 */
+.site-footer {
+  background: #020617;
+  border-top: 1px solid #1e293b;
+  padding: 15px 20px; /* 세로 높이를 적절히 조절 */
+  color: #94a3b8;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+/* 왼쪽 섹션: 로고와 직무 */
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e5e7eb;
+  letter-spacing: 1px;
+}
+
+.footer-divider {
+  color: #1e293b;
+  font-size: 12px;
+}
+
+.footer-job {
+  font-size: 11px;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+/* 오른쪽 섹션: 링크 */
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #38bdf8;
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  .footer-left {
+    justify-content: center;
+  }
+}

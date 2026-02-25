@@ -1,0 +1,176 @@
+
+
+  /* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= MAIN WRAPPER ================= */
+.main-wrapper {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 수직 중앙 */
+  align-items: center;
+
+  text-align: center;
+  padding-bottom: 17px; /* footer와 최소 간격 */
+}
+
+/* ================= TITLE ================= */
+.title {
+  margin-bottom: 36px;
+}
+
+.title h1 {
+  font-size: 46px;
+  margin-bottom: 18px;
+}
+
+.title p {
+  font-size: 16px;
+  color: #94a3b8;
+  margin-bottom: 18px;
+}
+
+/* ================= 3D SCENE ================= */
+.scene {
+  width: 300px;
+  height: 560px;
+  perspective: 1800px;
+  margin: 0 auto;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================= CARD ================= */
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 26px;
+  transform-style: preserve-3d;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  pointer-events: none;
+}
+
+/* ================= CARD CONTENT ================= */
+.card-content {
+  position: relative;
+  z-index: 10;
+  transform: translateZ(28px);
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 15px;
+  color: #cbd5f5;
+  margin-bottom: 14px;
+}
+
+/* ================= BUTTON ================= */
+.card-btn {
+  display: inline-block;
+  padding: 9px 20px;
+  font-size: 14px;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  text-decoration: none;
+
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+
+  transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ================= CARD POSITIONS ================= */
+.front { transform: rotateY(0deg)   translateZ(240px); }
+.right { transform: rotateY(90deg)  translateZ(240px); }
+.back  { transform: rotateY(180deg) translateZ(240px); }
+.left  { transform: rotateY(270deg) translateZ(240px); }
+
+/* ================= ACCENT COLORS ================= */
+.dev   { border-left: 4px solid #38bdf8; }
+.tkd   { border-left: 4px solid #ef4444; }
+.cs    { border-left: 4px solid #facc15; }
+.extra { border-left: 4px solid #22c55e; }
+
+/* ================= CARD IMAGE ================= */
+.card-image {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+}
+
+.card-image img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  opacity: 0.55;
+  margin-bottom: 55px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-height: 760px) {
+  .title h1 {
+    font-size: 38px;
+  }
+
+  .scene {
+    width: 270px;
+    height: 360px;
+  }
+}

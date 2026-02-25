@@ -1,0 +1,42 @@
+HELP.md
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# 설정 파일 숨기기 (가장 중요)
+src/main/resources/application.properties
+
+# 빌드 결과물 제외
+/target/
+/out/
+*.class
+
+# IDE 설정 파일 제외
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+*.iws
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/

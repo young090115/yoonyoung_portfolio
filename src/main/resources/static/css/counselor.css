@@ -1,0 +1,337 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard', 'Arial', sans-serif; /* 폰트 가독성 향상 */
+}
+
+/* ================= BODY ================= */
+body {
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ================= HERO (그라데이션 & 텍스트 효과) ================= */
+.hero {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 16px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 48px); /* 화면 크기에 맞게 조절 */
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #94a3b8;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+/* ================= EXPERIENCE (레이아웃 최적화) ================= */
+.experience {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.experience h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #f1f5f9;
+}
+
+.experience h4 {
+  text-align: center;
+  font-size: 18px;
+  color: #38bdf8; /* 강조 색상으로 변경 */
+  margin-bottom: 60px;
+  font-weight: 400;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+/* LEFT: TIMELINE (입체감 부여) */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  padding-left: 30px;
+  transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateX(10px);
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -41px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  background: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #38bdf8; /* 글로우 효과 */
+  z-index: 1;
+}
+
+.timeline-item .period {
+  display: block;
+  font-size: 13px;
+  color: #38bdf8;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.timeline-item h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+  color: #f8fafc;
+}
+
+.timeline-item .company {
+  font-size: 15px;
+  color: #cbd5f5;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.timeline-item .desc {
+  font-size: 15px;
+  color: #94a3b8;
+}
+
+/* RIGHT: CERTIFICATIONS (리스트 디자인) */
+.cert-list {
+  list-style: none;
+}
+
+.cert-list li {
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 15px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.cert-list li:hover {
+  background: rgba(56, 189, 248, 0.05);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-3px);
+}
+
+.cert-list .year {
+  font-weight: 800;
+  color: #facc15;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.cert-info .cert-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cert-info .issuer {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* ================= PHILOSOPHY ================= */
+.philosophy {
+  padding: 120px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.philosophy p {
+  font-size: clamp(20px, 4vw, 26px);
+  color: #e2e8f0;
+  font-weight: 300;
+}
+
+.philosophy strong {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+/* ================= HOW I WORK (애니메이션 최적화) ================= */
+.how {
+  padding: 100px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how h2{
+  margin-bottom: 10px;
+}
+
+.how h3{
+  margin-bottom: 20px;
+}
+
+.work-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 40px;
+  justify-items: center; /* 그리드 아이템 자체를 중앙으로 */
+  align-items: start;
+}
+
+.work-list li {
+  font-size: 18px;
+  color: #f1f5f9;
+  text-align: center; /* 텍스트를 중앙으로 */
+  position: relative;
+  width: 100%; /* 부모 너비 안에서 꽉 차게 */
+  max-width: 300px; /* 너무 퍼지지 않게 적당한 너비 제한 */
+  padding: 10px;
+}
+
+.work-list .fast::before { content: "FAST "; color: #38bdf8; font-weight: 800; }
+.work-list .d::before { content: "D "; color: #facc15; font-weight: 800; }
+
+.work-list li::after {
+  content: "";
+  display: block;
+  font-size: 14px;
+  color: #94a3b8;
+  opacity: 0;
+  margin: 8px auto 0; /* 중앙 정렬을 위해 margin auto 사용 */
+  animation: koFade 8s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* 애니메이션 문구 */
+.work-list .fast:nth-child(1)::after { content: "빠른 니즈 파악"; animation-delay: 0s; }
+.work-list .d:nth-child(2)::after { content: "꾸며내지 않은 공감"; animation-delay: 0.3s; }
+.work-list .fast:nth-child(3)::after { content: "빠른 상황 분석"; animation-delay: 0.6s; }
+.work-list .d:nth-child(4)::after { content: "디테일까지 챙기는 정확함"; animation-delay: 0.9s; }
+.work-list .fast:nth-child(5)::after { content: "빠른 해결책 제시"; animation-delay: 1.2s; }
+
+
+
+
+@keyframes koFade {
+  0%, 100% { opacity: 0; transform: translateY(5px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= AWARDS CARDS (디자인 강화) ================= */
+.awards {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+.awards h2 {
+  margin-bottom: 30px;
+}
+
+.award-cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.award-card {
+  width: 320px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px); /* 유리 효과 */
+}
+
+.award-card:hover {
+  transform: translateY(-15px);
+  background: rgba(56, 189, 248, 0.05);
+  border-color: #38bdf8;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.award-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  filter: grayscale(20%);
+  transition: 0.3s;
+}
+
+.award-card:hover img {
+  filter: grayscale(0%);
+}
+
+.award-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #f8fafc;
+}
+
+.award-card p {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 900px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .work-list {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
+}

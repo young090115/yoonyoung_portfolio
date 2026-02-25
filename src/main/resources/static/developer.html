@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>YOON | Backend Developer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/developer.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+
+<div id="page-wrapper">
+
+  <section class="intro" id="intro-screen">
+    <div class="intro-content">
+      <p class="intro-hello">
+        <span id="typing-text"></span><span class="cursor">_</span>
+      </p>
+      <button class="intro-enter" id="enter-btn">EXECUTE SYSTEM</button>
+    </div>
+  </section>
+
+  <header class="dev-header">
+    <div class="header-container">
+      <div class="system-status">
+        <span class="status-dot"></span> SYSTEM ONLINE
+      </div>
+      <h1>BACKEND ARCHITECT</h1>
+      <p class="subtitle">탄탄한 기본기를 갖춘 <span class="highlight">백엔드 개발자</span>입니다.</p>
+    </div>
+  </header>
+
+  <div class="dev-layout">
+    <aside class="dev-sidebar">
+      <div class="nav-label">MAIN PROTOCOL</div>
+      <nav class="dev-nav">
+        <button data-section="intro" class="nav-item active">01. IDENTITY</button>
+        <div class="nav-group">
+          <button data-section="skills" class="nav-item has-sub">02. CORE_STACKS</button>
+          <div class="sub-menu" data-parent="skills">
+            <button data-section="skill-java"> JAVA</button>
+            <button data-section="skill-python"> API, PYTHON </button>
+            <button data-section="skill-sql"> DATABASE</button>
+          </div>
+        </div>
+        <button data-section="credentials" class="nav-item">03. CREDENTIALS</button>
+        <button data-section="visitor" class="nav-item">04. GUESTBOOK</button>
+      </nav>
+    </aside>
+
+    <main class="dev-container">
+      
+      <section id="intro" class="dev-section active">
+        <div class="section-header">LOG: identity.md</div>
+        
+          <div class="terminal-card">
+            <p class="code-line">
+              <span class="line-num">1.</span>
+              새로운 환경과 요구사항에 빠르게 적응하려 노력하는 신입 백엔드 개발자입니다.
+            </p>
+            <p class="code-line">
+              <span class="line-num">2.</span>
+              주어진 작업과 기준을 정확히 이해하고,
+            </p>
+            <p class="code-line">
+              <span class="line-num">3.</span>
+              팀의 방식에 맞춰 성실하게 구현하는 것을 우선으로 합니다.
+            </p>
+          </div>
+
+        <div class="career-roadmap">
+          <div class="roadmap-header">CAREER_LOG_VISUALIZATION</div>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="time-tag">2023.08 - 2024.01</span>
+                <h4>JAVA 백엔드 개발자</h4>
+                <h6>에코아이티</h6>
+                <p> 자사 WEBSITE 보완 수정 프로젝트 참여. 전반적인 백엔드 및 SQL을 담당하였습니다.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot pulse"></div>
+              <div class="timeline-content">
+                <span class="time-tag">2024.01 - 2024.05</span>
+                <h4>open AI를 연동한 chat bot 개발 및 플루이즈(앱 자율실행 AI) 개발 참여</h4>
+                <h6>플루이즈</h6>
+                <p>앱 자율 실행 AI 개발 참여 및 웹 상에서의 음성을 통해 자동으로 실행 되어 결과까지 도출하는 시스템 구축 참여</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="dev-section">
+        <div class="section-header">SKILLS: overview.sh</div>
+        <div class="terminal-card">
+          <div class="skill-bars-container">
+
+            <div class="skill-bar-item" onclick="goToSection('skill-java')">
+              <div class="skill-info">
+                <span>JAVA / SPRING</span>
+                <span>70%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 70%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item" onclick="goToSection('skill-python')">
+              <div class="skill-info">
+                <span>PYTHON / AI OPENAPI</span>
+                <span>65%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 65%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item" onclick="goToSection('skill-sql')">
+              <div class="skill-info">
+                <span>SQL / DATABASE</span>
+                <span>80%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+          <p class="code-line" style="margin-top:30px;"> > Click a stack above to view detailed information.</p>
+        </div>
+      </section>
+
+      <section id="skill-java" class="dev-section">
+        <div class="section-header">SKILLS: java-spring boot</div>
+        <div class="skill-detail-card">
+          <div class="detail-icon">😊😘😂감정일기(블로그)</div>
+          <h3>java, spring boot, sql, jQuery, jsp, css</h3>
+          <ul class="skill-list">
+            <li>객체 지향 프로그래밍(OOP) 원칙을 준수한 <strong>재사용 가능한 코드</strong> 작성</li>
+            <li>Spring Boot를 활용한 <strong>RESTful API</strong> 설계 및 구현</li>
+            <li>sql을 통한 <strong>댓글기능</strong> 구현 </li>
+            <li>
+              <a href="https://github.com/young090115/EmotionsOld.git" target="_blank" style="text-decoration: none; color: inherit;">
+                https://github.com/young090115/EmotionsOld.git
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="skill-python" class="dev-section">
+        <div class="section-header">
+          <span>SKILLS:</span>API - PYTHON
+        </div>
+        <div class="skill-detail-card">
+          <div class="detail-icon">
+            📊 Open-AI Chart Bot
+          </div>
+          <h3>JS, JSON, API 연동으로 구현된 지능형 챗봇 서비스</h3>
+          <ul class="skill-list">
+            <li>
+              <strong>OpenAI API (GPT)</strong> 연동을 통한 지능형 챗봇 서비스 개발
+            </li>
+            <li>
+              JavaScript와 JSON 데이터를 기반으로 한 <strong>자동화된 차트 생성</strong> 기능 제공
+            </li>
+            <li>
+              <strong>파일 첨부 기능</strong> 및 <strong>사용자 질의에 대한 자동응답</strong> 처리
+            </li>
+            <li>
+              <a href="https://github.com/young090115/GPT_ChatBot.git" target="_blank" style="text-decoration: none; color: inherit;">
+                https://github.com/young090115/GPT_ChatBot.git
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/young090115/graph_DB_for_python.git" target="_blank" style="text-decoration: none; color: inherit;">
+                https://github.com/young090115/graph_DB_for_python.git
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="skill-sql" class="dev-section">
+        <div class="section-header">SKILLS: database_architecture.sql</div>
+        <div class="skill-detail-card">
+          <div class="detail-icon">💾</div> 
+          <h3>Oracle, MySQL & Neo4j (GraphDB)</h3>
+          
+          <ul class="skill-list">
+            <li><strong>다양한 DB 구현 경험:</strong> 관계형(RDBMS)인 <strong>Oracle, MySQL</strong>부터 그래프 기반(NoSQL)인 <strong>Neo4j</strong>까지 프로젝트 성격에 맞춘 데이터 구축</li>
+            <li><strong>GraphDB 활용력:</strong> Neo4j를 활용하여 복잡하게 얽힌 <strong>데이터 간의 관계를 노드와 엣지로 설계</strong>하고 가치 있는 정보 추출 가능</li>
+            <li><strong>RDBMS 설계 및 최적화:</strong> ERD 설계를 통한 <strong>정규화</strong> 및 <strong>인덱싱(Indexing)</strong> 최적화로 대용량 조회 성능 개선</li>
+            <li><strong>고급 쿼리 작성:</strong> JOIN 및 서브쿼리를 활용해 비즈니스 요구사항을 정확히 반영한 <strong>복잡한 SQL 로직 구현</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="credentials" class="dev-section">
+        <div class="section-header">CREDENTIALS: achievements_and_certs</div>
+        <div class="achievement-card">
+          <div class="elite-badge">TOP PERFORMANCE</div>
+          <h3>Java 기반 풀스택 개발자 양성과정</h3>
+          <p class="sub-info">K-Digital Training (6개월)</p>
+          <div class="award-box">
+            <span class="trophy">🏆</span>
+            <div class="award-text">
+              <strong>전체 수강생 중 최우수로 이수</strong>
+            </div>
+          </div>
+        </div>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <span class="cert-date">ISSUED: 2023</span>
+                <p class="cert-name">정보처리기사</p>
+            </div>
+            <div class="cert-card">
+                <span class="cert-date">ISSUED: 2023</span>
+                <p class="cert-name">SQLD (SQL개발자)</p>
+            </div>
+            <div class="cert-card">
+                <span class="cert-date">ISSUED: 2023</span>
+                <p class="cert-name">ADSP (데이터 분석 준전문가)</p>
+            </div>
+            <div class="cert-card">
+                <span class="cert-date">ISSUED: 2022</span>
+                <p class="cert-name">컴퓨터 활용능력 2급</p>
+            </div>
+        </div>
+        </div>
+        
+      </section>
+      
+      <section id="visitor" class="dev-section">
+        <div class="section-header">GUESTBOOK - 방명록</div>
+        <div class="terminal-card">
+          <h4>제 웹사이트를 방문해 주셔서 감사합니다.</h4>
+          <div class="comment-form">
+            <div class="comment-input-row">
+                <input type="text" id="author" placeholder="NAME - 이름" required>
+                <input type="text" id="title" placeholder="TITLE - 제목" required>
+            </div>
+            <textarea id="text" placeholder="WRITE YOUR MESSAGE HERE..." required></textarea>
+            <button type="button" class="comment-btn" onclick="saveComment()">EXECUTE_INSERT</button>
+          </div>
+          <div id="comment-list" class="comment-list">
+            <p style="color: #475569; font-size: 0.8rem;">// Accessing system database...</p>
+          </div>
+        </div>
+      </section>
+        
+    </main>
+  </div>
+
+  <section class="cta">
+    <a href="index.html">Back to Main</a>
+  </section>
+
+  <div id="footer"></div>
+
+</div> 
+<script src="js/footer.js"></script>
+<script src="js/developer.js"></script>
+</body>
+</html>
