@@ -9,27 +9,27 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter // Lombok 사용 시 편리함
+@Getter
 @Setter
-@NoArgsConstructor // 기본 생성자
-@Table(name = "portfolio_board") // DB의 테이블 이름과 일치시켜야 합니다!
+@NoArgsConstructor
+@Table(name = "portfolio_board") // DB 테이블 이름과 반드시 일치해야 함
 public class Board {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL의 Auto Increment와 매핑
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100) // NN(Not Null) 설정 반영
+    @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false) // TEXT 타입 반영
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
 
     @Column(length = 45)
     private String author;
 
-    @CreationTimestamp // 글 생성 시 현재 시간 자동 입력
-    @Column(updatable = false)
-    private LocalDateTime created_at;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false) // DB 컬럼명을 명시적으로 지정
+    private LocalDateTime createdAt; // 자바 표준 관례에 따라 createdAt으로 변경 (컬럼명은 created_at으로 매핑)
 
 }
