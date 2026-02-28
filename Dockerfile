@@ -13,7 +13,7 @@ FROM eclipse-temurin:25-jre-noble
 WORKDIR /app
 
 # 빌드된 jar 파일을 app.jar로 복사
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/*.war app.jar
 
 # 서버 실행
 ENTRYPOINT ["java", "-jar", "app.jar"]
