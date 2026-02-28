@@ -1,10 +1,12 @@
 /* ============================================================
-   0. RESET & GLOBAL SETTINGS
-   - 기본 폰트
-   - 전체 레이아웃
+   0. RESET & GLOBAL
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
 
 html, body {
     height: 100%;
@@ -24,7 +26,7 @@ html, body {
 
 
 /* ============================================================
-   1. INTRO SCREEN (첫 진입 화면)
+   1. INTRO SCREEN
    ============================================================ */
 
 .intro {
@@ -72,7 +74,7 @@ html, body {
 
 
 /* ============================================================
-   2. HEADER & MAIN LAYOUT
+   2. HEADER & LAYOUT
    ============================================================ */
 
 .dev-header {
@@ -103,7 +105,7 @@ html, body {
 
 
 /* ============================================================
-   3. SIDEBAR NAVIGATION
+   3. SIDEBAR
    ============================================================ */
 
 .dev-sidebar {
@@ -114,93 +116,14 @@ html, body {
     height: fit-content;
 }
 
-.nav-label {
-    font-size: 11px;
-    color: #475569;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.dev-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.nav-item {
-    background: transparent;
-    border: none;
-    color: #94a3b8;
-    padding: 10px 15px;
-    border-radius: 6px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
-    font-family: 'Fira Code', monospace;
-}
-
-.nav-item:hover {
-    color: #38bdf8;
-    background: rgba(30, 41, 59, 0.5);
-}
-
-.nav-item.active {
-    background: rgba(56, 189, 248, 0.1);
-    color: #38bdf8;
-    font-weight: 600;
-    border-left: 3px solid #38bdf8;
-    border-radius: 0 6px 6px 0;
-}
-
-/* Sub Menu */
-
-.sub-menu {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    padding: 5px 0 10px 20px;
-    border-left: 1px solid #1e293b;
-    margin-left: 15px;
-}
-
-.nav-group:focus-within .sub-menu {
-    display: flex;
-}
-
-.sub-menu button {
-    background: transparent;
-    border: none;
-    color: #64748b;
-    text-align: left;
-    padding: 6px 0;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: color 0.2s;
-}
-
-.sub-menu button:hover {
-    color: #38bdf8;
-    background: rgba(30, 41, 59, 0.5);
-}
-
 
 /* ============================================================
-   4. MAIN CONTENT AREA
+   4. CONTENT
    ============================================================ */
 
-.dev-container { padding: 50px 60px; }
-
-.section-header {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.85rem;
-    color: #475569;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #1e293b;
-    padding-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.dev-container {
+    padding: 50px 60px;
+    width: 100%;
 }
 
 .dev-section {
@@ -218,202 +141,45 @@ html, body {
 .terminal-card { 
     background: rgba(30, 41, 59, 0.4);
     border: 1px solid #1e293b;
-    padding: 24px;
+    padding: 30px;
     border-radius: 12px;
     backdrop-filter: blur(10px);
     font-family: 'Fira Code', monospace; 
-    border-left: 4px solid #38bdf8; 
+    border-left: 4px solid #38bdf8;
+    width: 100%;
 }
 
 
 /* ============================================================
-   5. SKILLS SECTION (CORE_STACKS)
+   5. VISITOR (방명록) - 정상화
    ============================================================ */
 
-.skill-bars-container {
+#visitor {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.skill-bar-item {
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.skill-bar-item:hover {
-    transform: translateX(5px);
-    opacity: 0.9;
-}
-
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.bar-bg {
-    height: 8px;
-    background: #1e293b;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-    border-radius: 4px;
-}
-
-
-/* ============================================================
-   6. SKILL DETAIL CARD
-   ============================================================ */
-
-.skill-detail-card {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid #1e293b;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: left;
-}
-
-.detail-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.skill-detail-card h3 {
-    font-size: 1.5rem;
-    color: #38bdf8;
-    margin-bottom: 20px;
-}
-
-.skill-list {
-    list-style: none;
-    padding: 0;
-}
-
-.skill-list li {
-    margin-bottom: 15px;
-    padding-left: 20px;
-    position: relative;
-    color: #cbd5e1;
-}
-
-.skill-list li::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    color: #38bdf8;
-    font-family: 'Fira Code', monospace;
-}
-
-
-/* ============================================================
-   7. CREDENTIALS SECTION
-   ============================================================ */
-
-.achievement-card {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 1px solid #38bdf833;
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.elite-badge {
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: #38bdf8;
-    color: #020617;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 4px 12px;
-    border-radius: 4px;
-}
-
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-    gap: 20px;
-}
-
-.cert-card {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid #1e293b;
-    padding: 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
 }
 
-.cert-card:hover {
-    border-color: #38bdf8;
-    transform: translateY(-5px);
-    background: rgba(56, 189, 248, 0.05);
-}
-
-.cert-date {
-    font-size: 0.75rem;
-    color: #475569;
-    margin-bottom: 8px;
-    font-family: 'Fira Code', monospace;
-}
-
-.cert-name {
-    font-weight: 600;
-    color: #e2e8f0;
-    font-size: 1rem;
-    margin: 0;
-}
-
-
-/* ============================================================
-   8. VISITOR SECTION (방명록)
-   ============================================================ */
-
 #visitor .terminal-card {
-    max-width: 700px;
     width: 100%;
-    margin: 0 auto;
-}
-
-#visitor .comment-form {
-    width: 100%;
-}
-
-#visitor #comment-list {
-    width: 100%;
-}
-
-#visitor h4 {
-    color: #38bdf8;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    max-width: 800px;
 }
 
 .comment-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
     margin-bottom: 40px;
     background: rgba(15, 23, 42, 0.6);
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     border: 1px solid #1e293b;
+    width: 100%;
 }
 
 .comment-input-row {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    width: 100%;
 }
 
 .comment-form input,
@@ -426,6 +192,11 @@ html, body {
     font-family: 'Fira Code', monospace;
     outline: none;
     width: 100%;
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 .comment-form input:focus,
@@ -453,10 +224,10 @@ html, body {
 
 
 /* ============================================================
-   9. RESPONSIVE
+   6. RESPONSIVE (모바일 완전 대응)
    ============================================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .dev-layout {
         grid-template-columns: 1fr;
     }
@@ -466,20 +237,24 @@ html, body {
         border-bottom: 1px solid #1e293b;
         position: static;
     }
+}
+
+@media (max-width: 768px) {
 
     .dev-container {
         padding: 30px 20px;
+    }
+
+    #visitor .terminal-card {
+        max-width: 100%;
     }
 
     .comment-input-row {
         flex-direction: column;
     }
 
-    .cert-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #visitor .terminal-card {
-        max-width: 100%;
+    .comment-btn {
+        align-self: stretch;
+        text-align: center;
     }
 }
