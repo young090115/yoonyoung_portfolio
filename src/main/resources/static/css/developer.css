@@ -3,6 +3,10 @@
    =================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap');
 
+* {
+    box-sizing: border-box; /* 패딩이 너비를 계산할 때 포함되도록 설정 */
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -142,35 +146,6 @@ html, body {
     border-radius: 0 6px 6px 0;
 }
 
-.sub-menu {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    padding: 5px 0 10px 20px;
-    border-left: 1px solid #1e293b;
-    margin-left: 15px;
-}
-
-/* sub-menu visible when active */
-.nav-group:focus-within .sub-menu {
-    display: flex;
-}
-
-.sub-menu button {
-    background: transparent;
-    border: none;
-    color: #64748b;
-    text-align: left;
-    padding: 6px 0;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: color 0.2s;
-}
-.sub-menu button:hover {
-    color: #38bdf8;
-    background: rgba(30, 41, 59, 0.5);
-}
-
 /* ===================================================
    3. CONTENT AREA
    =================================================== */
@@ -192,48 +167,6 @@ html, body {
     animation: fadeIn 0.4s ease forwards;
 }
 
-/* ===================================================
-   GITHUB LINK CUSTOM STYLES
-   =================================================== */
-
-/* 1. 기본 상태: 깃허브 아이콘 느낌의 컬러와 부드러운 배경 transition */
-.skill-list li a {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    color: #38bdf8;               /* 테마의 포인트 컬러인 스카이 블루 */
-    background: rgba(56, 189, 248, 0.05); /* 아주 연한 배경색 */
-    padding: 2px 10px;
-    border-radius: 6px;
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9em;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    word-break: break-all;
-    margin-top: 5px;
-}
-
-/* 2. 마우스를 올렸을 때(Hover): 빛나는 효과와 배경색 채우기 */
-.skill-list li a:hover {
-    color: #020617;               /* 글자색을 배경색(어두운색)으로 변경 */
-    background: #38bdf8;          /* 배경을 포인트 컬러로 가득 채움 */
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); /* 네온 광채 효과 */
-    transform: translateY(-2px);   /* 살짝 떠오르는 애니메이션 */
-    text-decoration: none;        /* 밑줄은 생기지 않게 함 (버튼 느낌 강조) */
-}
-
-/* 3. 링크 앞에 깃허브 등을 상징하는 이모지나 기호 자동 추가 (선택사항) */
-.skill-list li a::before {
-    content: '🔗';                /* 링크 아이콘 추가 */
-    margin-right: 8px;
-    font-size: 0.8rem;
-}
-
-/* 4. 클릭 시 살짝 눌리는 느낌 */
-.skill-list li a:active {
-    transform: translateY(0);
-    opacity: 0.8;
-}
 .dev-section.active { display: block; }
 
 @keyframes fadeIn {
@@ -241,235 +174,115 @@ html, body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===================================================
+   4. GUESTBOOK (VISITOR LOG) - FIXED
+   =================================================== */
+#visitor h4 {
+    color: #38bdf8;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 50px;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+    backdrop-filter: blur(10px);
+}
+
+/* 입력창 행 레이아웃 수정 */
+.comment-input-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 이름칸과 내용요약칸 비율 */
+    gap: 12px;
+    width: 100%;
+}
+
+.comment-form input, 
+.comment-form textarea {
+    background: #020617;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+    padding: 14px;
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace;
+    outline: none;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.comment-form input:focus, 
+.comment-form textarea:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.comment-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.comment-btn {
+    align-self: flex-end;
+    background: rgba(56, 189, 248, 0.05);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    padding: 12px 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.comment-btn:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+/* ===================================================
+   5. SKILLS & TERMINAL CARDS
+   =================================================== */
 .terminal-card { 
     background: rgba(30, 41, 59, 0.4);
     border: 1px solid #1e293b;
     padding: 24px;
     border-radius: 12px;
-    backdrop-filter: blur(10px);
     font-family: 'Fira Code', monospace; 
     border-left: 4px solid #38bdf8; 
 }
 
-.code-comment { color: #475569; margin-bottom: 15px; }
-.line-num { color: #475569; margin-right: 10px; font-size: 0.8rem; }
-
-/* Career Timeline Styles */
-.career-roadmap {
-    margin-top: 40px;
-    background: rgba(15, 23, 42, 0.3);
-    border: 1px dashed #1e293b;
-    padding: 30px;
-    border-radius: 12px;
-}
-
-.roadmap-header {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
+.skill-list li a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
     color: #38bdf8;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-    text-align: center;
-}
-
-.timeline { position: relative; padding-left: 30px; }
-.timeline::before {
-    content: '';
-    position: absolute; left: 7px; top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #38bdf8 0%, #1e293b 100%);
-}
-
-.timeline-item { position: relative; margin-bottom: 40px; }
-.timeline-dot {
-    position: absolute; left: -30px; top: 5px;
-    width: 16px; height: 16px;
-    background: #020617; border: 3px solid #38bdf8;
-    border-radius: 50%; z-index: 1;
-}
-
-.timeline-dot.pulse {
-    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
-    animation: dot-pulse 1.5s infinite;
-}
-
-@keyframes dot-pulse {
-    70% { box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
-}
-
-.timeline-content {
-    background: rgba(30, 41, 59, 0.3);
-    padding: 20px; border-radius: 8px;
-    border: 1px solid #1e293b;
-    transition: transform 0.3s ease;
-}
-
-.timeline-content h4 { margin: 0; color: #f8fafc; font-size: 1.1rem; }
-.timeline-content h6 { margin: 5px 0 10px 0; color: #38bdf8; font-size: 0.85rem; opacity: 0.8; }
-.time-tag { 
-    font-size: 0.7rem; color: #38bdf8; background: rgba(56, 189, 248, 0.1);
-    padding: 2px 8px; border-radius: 4px; margin-bottom: 10px; display: inline-block;
-}
-
-/* ===================================================
-   NEW: CORE_STACKS Styles
-   =================================================== */
-.skill-bars-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.skill-bar-item { margin-bottom: 5px; }
-
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.bar-bg {
-    height: 8px;
-    background: #1e293b;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-    border-radius: 4px;
-}
-
-.skill-detail-card {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid #1e293b;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: left;
-}
-
-.detail-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.skill-detail-card h3 {
-    font-size: 1.5rem;
-    color: #38bdf8;
-    margin-bottom: 20px;
-}
-
-.skill-list {
-    list-style: none;
-    padding: 0;
-}
-
-.skill-list li {
-    margin-bottom: 15px;
-    padding-left: 20px;
-    position: relative;
-    color: #cbd5e1;
-}
-
-.skill-list li::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    color: #38bdf8;
-    font-family: 'Fira Code', monospace;
-}
-
-/* Credentials Styles */
-.achievement-card {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 1px solid #38bdf833;
-    padding: 30px; border-radius: 12px;
-    margin-bottom: 30px; position: relative;
-}
-
-.elite-badge {
-    position: absolute; top: -12px; right: 20px;
-    background: #38bdf8; color: #020617;
-    font-size: 11px; font-weight: bold;
-    padding: 4px 12px; border-radius: 4px;
-}
-
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-    gap: 20px;
-}
-
-.skill-bar-item {
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.skill-bar-item:hover {
-    transform: translateX(5px);
-    opacity: 0.9;
-}
-
-.cert-card {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid #1e293b;
-    padding: 20px; border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.cert-card:hover {
-    border-color: #38bdf8;
-    transform: translateY(-5px);
     background: rgba(56, 189, 248, 0.05);
-}
-
-.cert-date { font-size: 0.75rem; color: #475569; margin-bottom: 8px; font-family: 'Fira Code', monospace; }
-.cert-name { font-weight: 600; color: #e2e8f0; font-size: 1rem; margin: 0; }
-
-/* Visitor Log Styles */
-#visitor h4 {
-    color: #38bdf8;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-}
-
-.comment-form {
-    display: flex; flex-direction: column; gap: 12px;
-    margin-bottom: 40px; background: rgba(15, 23, 42, 0.6);
-    padding: 20px; border-radius: 8px; border: 1px solid #1e293b;
-}
-
-.comment-input-row { display: flex; gap: 10px; }
-.comment-form input, .comment-form textarea {
-    background: #020617; border: 1px solid #334155;
-    color: #e5e7eb; padding: 12px; border-radius: 4px;
-    font-family: 'Fira Code', monospace; outline: none; width: 100%;
-}
-
-.comment-form input:focus, .comment-form textarea:focus { border-color: #38bdf8; }
-.comment-btn {
-    align-self: flex-end; background: transparent;
-    border: 1px solid #38bdf8; color: #38bdf8;
-    padding: 10px 30px; cursor: pointer;
-    font-family: 'Fira Code', monospace; font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    font-size: 0.9em;
     transition: all 0.3s;
+    margin-top: 5px;
 }
 
-.comment-btn:hover { background: #38bdf8; color: #020617; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+.skill-list li a:hover {
+    color: #020617;
+    background: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
     .dev-layout { grid-template-columns: 1fr; }
     .dev-sidebar { border-right: none; border-bottom: 1px solid #1e293b; position: static; }
     .dev-container { padding: 30px 20px; }
-    .comment-input-row { flex-direction: column; }
-    .cert-grid { grid-template-columns: 1fr; }
+    .comment-input-row { grid-template-columns: 1fr; } /* 모바일에선 세로로 */
 }
