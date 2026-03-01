@@ -35,17 +35,14 @@ const navButtons = document.querySelectorAll(".nav-item, .sub-menu button");
 const subMenus = document.querySelectorAll(".sub-menu");
 
 function activateSection(id) {
-    // 섹션 전환
     sections.forEach(sec => {
         sec.classList.toggle("active", sec.id === id);
     });
 
-    // 버튼 활성화 표시
     navButtons.forEach(btn => {
         btn.classList.toggle("active", btn.dataset.section === id);
     });
 
-    // 모바일 배려: 섹션 변경 시 위로 스크롤
     if(window.innerWidth < 768) {
         const container = document.querySelector('.dev-container');
         if(container) {
@@ -53,47 +50,41 @@ function activateSection(id) {
         }
     }
 
-    // 방명록 섹션(visitor)이 활성화될 때 DB에서 댓글 목록을 가져옴
     if (id === 'visitor') {
         loadComments();
     }
 }
 
 function goToSection(sectionId) {
-
-    // 모든 section 비활성화
     document.querySelectorAll('.dev-section').forEach(section => {
         section.classList.remove('active');
     });
 
-    // 선택된 section 활성화
     const targetSection = document.getElementById(sectionId);
     if (targetSection) {
         targetSection.classList.add('active');
     }
 
-    // 사이드바 active 상태 변경
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
     });
 
-    // data-section이 같은 버튼 찾기
     const targetNav = document.querySelector(`.nav-item[data-section="${sectionId}"]`);
     if (targetNav) {
         targetNav.classList.add('active');
     }
 
-    // 부드럽게 위로 이동
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 
 /* ===================================================
-   4. VISITOR LOG (CRUD) API CALLS
+   4. VISITOR LOG (CRUD) & PAGINATION LOGIC
    =================================================== */
+
+let currentPage = 1;
+const itemsPerPage = 10;
+let allComments = []; 
 
 // [조회] DB에서 댓글 목록 가져오기
 async function loadComments() {
@@ -104,34 +95,90 @@ async function loadComments() {
         const response = await fetch('/api/comments');
         if (!response.ok) throw new Error("Network response was not ok");
         
-        const comments = await response.json();
+        allComments = await response.json(); 
         
-        listElement.innerHTML = ''; // 기존 목록 초기화
+        // 최신 글이 위로 오도록 정렬 (DB ID 기준 내림차순)
+        allComments.sort((a, b) => b.id - a.id);
 
-        if (comments.length === 0) {
-            listElement.innerHTML = '<p style="color: #475569; font-size: 0.8rem;">// No logs found in system database...</p>';
-            return;
-        }
-
-        comments.forEach(comment => {
-            const date = new Date(comment.created_at).toLocaleString();
-            listElement.innerHTML += `
-                <div class="comment-item">
-                    <div class="comment-meta">
-                        <span class="comment-id">#${comment.id}</span> 
-                        <span class="comment-author">@${comment.author}</span>
-                        <span class="comment-date">${date}</span>
-                        <button class="delete-btn" onclick="deleteComment(${comment.id})">DELETE</button>
-                    </div>
-                    <div class="comment-title">> TITLE: ${comment.title}</div>
-                    <div class="comment-text">${comment.text}</div>
-                </div>
-            `;
-        });
+        displayComments(currentPage); 
+        setupPagination();            
+        
     } catch (error) {
         console.error('Fetch error:', error);
         listElement.innerHTML = '<p style="color: #ef4444;">// SYSTEM_ERROR: Failed to connect to DB</p>';
     }
+}
+
+// 데이터를 화면에 그리는 함수
+function displayComments(page) {
+    const listElement = document.getElementById('comment-list');
+    listElement.innerHTML = ''; 
+
+    if (allComments.length === 0) {
+        listElement.innerHTML = '<p style="color: #475569; font-size: 0.8rem;">// No logs found in system database...</p>';
+        return;
+    }
+
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pagedComments = allComments.slice(start, end);
+
+    // 전체 개수에서 현재 순서를 빼서 "내림차순 번호" 계산
+    // 예: 전체 15개면 1페이지 첫글은 No.15, 마지막글은 No.6
+    const totalCount = allComments.length;
+
+    pagedComments.forEach((comment, index) => {
+        const displayNo = totalCount - (start + index); // 가상 번호 계산 로직
+        const dateObj = new Date(comment.created_at);
+        const date = isNaN(dateObj.getTime()) ? "SYSTEM_TIME_ERROR" : dateObj.toLocaleString();
+
+    // 40자 제한
+    const limit = 40;
+    const shortText = comment.text.length > limit 
+        ? comment.text.substring(0, limit) + "..." 
+        : comment.text;
+
+        listElement.innerHTML += `
+            <div class="comment-item">
+                <div class="comment-meta">
+                    <span class="comment-id">No.${displayNo}</span> 
+                    <span class="comment-author">@${comment.author}</span>
+                    <span class="comment-date">${date}</span>
+                    <button class="delete-btn" onclick="deleteComment(${comment.id})">DELETE</button>
+                </div>
+                <div class="comment-title">> TITLE: ${comment.title}</div>
+                <div class="comment-text" title="${comment.text}">${shortText}</div>
+            </div>
+        `;
+    });
+}
+
+// 하단 페이지 번호 버튼 생성 함수
+function setupPagination() {
+    const navContainer = document.getElementById('pagination-container');
+    if (!navContainer) return;
+
+    navContainer.innerHTML = ''; 
+    const pageCount = Math.max(1, Math.ceil(allComments.length / itemsPerPage));
+    
+    const navWrapper = document.createElement('div');
+    navWrapper.style.cssText = "display: flex; gap: 8px; justify-content: center; margin-top: 20px;";
+
+    for (let i = 1; i <= pageCount; i++) {
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        btn.className = `page-btn ${currentPage === i ? 'active' : ''}`;
+        btn.onclick = () => {
+            currentPage = i;
+            displayComments(i);
+            setupPagination(); 
+            
+            const visitorSection = document.getElementById('visitor');
+            window.scrollTo({ top: visitorSection.offsetTop, behavior: 'smooth' });
+        };
+        navWrapper.appendChild(btn);
+    }
+    navContainer.appendChild(navWrapper);
 }
 
 // [저장] DB에 새 댓글 저장하기
@@ -140,8 +187,13 @@ async function saveComment() {
     const title = document.getElementById('title').value;
     const text = document.getElementById('text').value;
 
-    if (!author || !title || !text) {
-        alert("모든 시스템 로그 필드(ID, TITLE, MESSAGE)를 채워주세요.");
+    if (!author.trim() || !title.trim() || !text.trim()) {
+        alert("모든 시스템 로그 필드를 채워주세요.");
+        return;
+    }
+
+    if (author.length > 10 || title.length > 20 || text.length > 100) {
+        alert("입력 제한 글자 수를 초과했습니다.");
         return;
     }
 
@@ -158,13 +210,14 @@ async function saveComment() {
             document.getElementById('author').value = '';
             document.getElementById('title').value = '';
             document.getElementById('text').value = '';
+            currentPage = 1; 
             loadComments();
         } else {
             alert("서버 오류로 저장에 실패했습니다.");
         }
     } catch (error) {
         console.error('Save error:', error);
-        alert("데이터 전송 실패. 백엔드 서버가 켜져 있는지 확인하세요.");
+        alert("데이터 전송 실패.");
     }
 }
 
@@ -180,14 +233,12 @@ async function deleteComment(id) {
         });
 
         if (response.ok) {
-            console.log(`Log #${id} deleted successfully.`);
-            loadComments(); // 삭제 완료 후 목록 새로고침
+            loadComments(); 
         } else {
-            alert("삭제 권한이 없거나 서버 오류가 발생했습니다.");
+            alert("삭제 실패.");
         }
     } catch (error) {
         console.error('Delete error:', error);
-        alert("서버와 통신할 수 없습니다.");
     }
 }
 
@@ -195,27 +246,22 @@ async function deleteComment(id) {
    5. INITIALIZATION (DOM LOAD)
    =================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-    // 타이핑 효과 시작
     typeEffect();
 
-    // 엔터 버튼 이벤트
     if (enterBtn) {
         enterBtn.addEventListener("click", enterSite);
     }
 
-    // 키보드 엔터 키 입력 시 진입
     document.addEventListener("keydown", e => {
         if (e.key === "Enter" && introScreen && introScreen.style.display !== "none") {
             enterSite();
         }
     });
 
-    // 네비게이션 버튼 이벤트 바인딩
     navButtons.forEach(btn => {
         btn.addEventListener("click", () => {
             const section = btn.dataset.section;
 
-            // 서브메뉴 제어
             subMenus.forEach(menu => {
                 const isParent = menu.dataset.parent === section;
                 const isChildClicked = Array.from(menu.querySelectorAll('button')).some(b => b.dataset.section === section);
@@ -231,6 +277,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 시작 시 항상 인트로 화면 활성화
     activateSection("intro");
 });

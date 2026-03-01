@@ -232,21 +232,25 @@
                 <span class="cert-date">ISSUED: 2022</span>
                 <p class="cert-name">컴퓨터 활용능력 2급</p>
             </div>
-        </div> </section> <section id="visitor" class="dev-section">
+            
+        </div> </section> 
+        
+        <section id="visitor" class="dev-section">
         <div class="section-header">GUESTBOOK - 방명록</div>
         <div class="terminal-card">
           <h4>제 웹사이트를 방문해 주셔서 감사합니다.</h4>
           <div class="comment-form">
             <div class="comment-input-row">
-                <input type="text" id="author" placeholder="NAME - 이름" required>
-                <input type="text" id="title" placeholder="TITLE - 제목" required>
+                <input type="text" id="author" placeholder="NAME - 이름" maxlength="10" required>
+                <input type="text" id="title" placeholder="TITLE - 제목" maxlength="20" required>
             </div>
-            <textarea id="text" placeholder="WRITE YOUR MESSAGE HERE..." required></textarea>
+            <textarea id="text" placeholder="WRITE YOUR MESSAGE HERE...(max 100)" required maxlength="100"></textarea>
             <button type="button" class="comment-btn" onclick="saveComment()">EXECUTE_INSERT</button>
           </div>
           <div id="comment-list" class="comment-list">
             <p style="color: #475569; font-size: 0.8rem;">// Accessing system database...</p>
           </div>
+          <div id="pagination-container" class="pagination-nav"></div>
         </div> </section>
     </main>
   </div>
